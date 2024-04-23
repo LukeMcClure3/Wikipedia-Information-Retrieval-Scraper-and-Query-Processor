@@ -8,7 +8,7 @@
 </p>
 <p>I split my code into 3 python files Crawler.py to crawl wikipedia and collect text and output a json file. indexer.py to take the json file and convert it to an inverted index of tf idf scores, and Processor.py to process queries using the inverted index and recommend articles. </p>
 <h2>Design</h2>  
-![image](design.png)
+![design](https://github.com/lmcclure3/Wikipedia-Information-Retrieval-Scraper-and-Query-Processor/blob/main/design.png?raw=true)
 <p></p>
 <h2>Architecture</h2>  
 <p></p>
