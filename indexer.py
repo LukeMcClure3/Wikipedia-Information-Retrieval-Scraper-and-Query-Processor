@@ -2,8 +2,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 import json
 import joblib
-input_file = "overnight.json"
-output_file = "index.pkl"
+input_file = "small.json"
+output_file = "index2.pkl"
 
 vectorizer = TfidfVectorizer()
 

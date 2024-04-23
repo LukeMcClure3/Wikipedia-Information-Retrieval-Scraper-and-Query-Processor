@@ -8,7 +8,7 @@ index_file = "index.pkl"
 @app.route("/")
 def hello_world():
     return """
-    <p>Hello, World!</p>
+    <p>Enter Query!</p>
     <form action="/button" method="post">
         <br>
         <input type="text" name="query">
