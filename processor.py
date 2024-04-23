@@ -48,10 +48,8 @@ def button():
         if sum == 0:
             rankings[i] = -1
         else:
-            rankings[i] = sum / (np.linalg.norm(doc_vector)*math.sqrt(len(query_word_ids)))
-        if i == 0:
-            print(doc_vector, sum)
-            print(np.linalg.norm(doc_vector) , math.sqrt(len(query_word_ids)))
+            rankings[i] = sum / (np.linalg.norm(X[i].data )*math.sqrt(len(query_word_ids)))
+        
         
             
 
