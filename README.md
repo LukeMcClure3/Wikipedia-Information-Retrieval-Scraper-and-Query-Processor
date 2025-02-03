@@ -47,8 +47,3 @@
 <p>Numpy 1.26.4</p>
 <p>Joblib 1.2.0</p>
 
-<h2>Bibliography</h2>  
-<p>“Form Input in Flask with Replit.” YouTube, May 8, 2022. https://www.youtube.com/watch?v=wbyjxDRnsYM. </p>
-<p>“Learn.” scikit. Accessed April 22, 2024. https://scikit-learn.org/stable/. </p>
-<p>“Spiders.” Spiders - Scrapy 2.11.1 documentation, April 11, 2024. https://docs.scrapy.org/en/latest/topics/spiders.html</p>
-<p>Chatgpt. Accessed April 23, 2024.https://chat.openai.com/share/9d13c327-06de-4e9d-b527-540ee21aff00</p>
