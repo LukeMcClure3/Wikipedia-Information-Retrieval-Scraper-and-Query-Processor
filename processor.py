@@ -33,8 +33,12 @@ def button2():
 
 @app.route("/button", methods=["POST"])
 def button():
-    query = request.form.get('query').lower()
-    data = joblib.load(index_file)
+    try :
+        query = request.form.get('query').lower()
+    
+        data = joblib.load(index_file)
+    except:
+        return "<p>FAIL HERE!</p>"
     X = data["X"]
     feature_names = data["feature_names"]
     query_list = query.split()
