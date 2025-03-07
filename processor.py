@@ -5,6 +5,11 @@ import math
 app = Flask(__name__)
 index_file = "index.pkl"
 #flask --app fltest run
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
 @app.route("/")
 def hello_world():
     return """
