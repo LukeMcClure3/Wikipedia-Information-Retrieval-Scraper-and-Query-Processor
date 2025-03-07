@@ -19,7 +19,17 @@ def hello_world():
         <br>
         <input type="submit" value="SEARCH" id="submit">
     </form>
+
+    <form action="/button2" method="post">
+        <br>
+        <input type="text" name="query">
+        <br>
+        <input type="submit" value="SEARCH" id="submit">
+    </form>
     """
+@app.route("/button2", methods=["POST"])
+def button2():
+    return "<p>SUCESS!</p>"
 
 @app.route("/button", methods=["POST"])
 def button():
@@ -71,7 +81,7 @@ def button():
 
     return rtn
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-# if __name__ == "__main__":
-#     app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=8080)
+if __name__ == "__main__":
+    app.run(debug=True)
