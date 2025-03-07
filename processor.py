@@ -6,8 +6,7 @@ app = Flask(__name__)
 index_file = "index.pkl"
 #flask --app fltest run
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
 
 
 @app.route("/")
@@ -71,3 +70,7 @@ def button():
         rtn += "<p> {} </p>".format( " "+ str(docID[1]))
 
     return rtn
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
