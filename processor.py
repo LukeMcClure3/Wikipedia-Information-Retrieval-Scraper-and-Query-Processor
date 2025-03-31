@@ -19,26 +19,26 @@ def hello_world():
         <br>
         <input type="submit" value="SEARCH" id="submit">
     </form>
-
-    <form action="/button2" method="post">
-        <br>
-        <input type="text" name="query">
-        <br>
-        <input type="submit" value="SEARCH" id="submit">
-    </form>
     """
-@app.route("/button2", methods=["POST"])
-def button2():
-    return "<p>SUCESS!</p>"
+#     + """
+#     <form action="/button2" method="post">
+#         <br>
+#         <input type="text" name="query">
+#         <br>
+#         <input type="submit" value="SEARCH" id="submit">
+#     </form>
+#     """
+# @app.route("/button2", methods=["POST"])
+# def button2():
+#     return "<p>SUCESS!</p>"
 
 @app.route("/button", methods=["POST"])
 def button():
-    try :
-        query = request.form.get('query').lower()
     
-        data = joblib.load(index_file)
-    except:
-        return "<p>FAIL HERE!</p>"
+    query = request.form.get('query').lower()
+    
+    data = joblib.load(index_file)
+    
     X = data["X"]
     feature_names = data["feature_names"]
     query_list = query.split()
