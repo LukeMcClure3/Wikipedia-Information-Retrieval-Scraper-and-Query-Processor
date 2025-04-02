@@ -1,0 +1,96 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #212529;
+} */
+
+p {
+    text-align: center;
+    font-size: 3.2em;
+    color: #ffffff;
+}
+
+form {
+    text-align: center;
+    display: block;
+    margin-top: 0em;
+}
+
+
+
+/* button */
+
+
+body{
+    margin: 0; 
+    padding: 0;
+    background: #19161c;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+}
+.container {
+    text-align: center; /* Centers both p and .box */
+    margin-top: 50px; /* Adjust as needed */
+}
+
+.box {
+    display: inline-block; /* Keeps it centered */
+    margin-top: -20px; /* Adjust spacing between p and box */
+}
+
+.input {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: 4px solid #ffffff;
+    border-radius: 50px;
+    box-sizing: border-box;
+    /* font-family: Comic Sans MS; */
+    font-size: 26px;
+    color: #ffffff;
+    outline: none;
+    transition: .5s;
+}
+.box:hover input{
+    width: 350px;
+    background: #3b3640;
+    border-radius: 10px;
+}
+.box i{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+    color: #ffffff;
+    transition: .2s;
+}
+.box:hover i{
+    opacity: 0;
+    z-index: -1;
+}
+
+/* YouTube icon */
+#ytb {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 52px;
+  border: 2px solid transparent;
+  color: #ff1717;
+  font-size: 25px;
+  transition: 0.3s;
+}
+
+#ytb:hover{
+  border-radius: 50%;
+  border-color: #ff1717;
+  box-shadow: 0 0 10px #ff4040;
+}

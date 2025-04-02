@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="static/home.css">
+	
+
+</head>
+
+<p>Search Wikipedia</p>
+    <!-- <form action="/button" method="post">
+        <br>
+        <input type="text" name="query">
+        <br>
+        <input type="submit" value="SEARCH" id="submit">
+    </form> -->
+
+
+    <div class="box">
+        <form action="/button" method="post" name="search">
+            <input type="text" autocomplete="off" class="input" name="query" onmouseout="this.value = ''; this.blur();">
+        </form>
+        <i class="fas fa-search"></i>
+    
+    </div>
+    <!-- <a href="https://www.youtube.com/c/ShortCode" target="_blank" id="ytb">
+    <i class="fab fa-youtube"> </i>
+    </a> -->

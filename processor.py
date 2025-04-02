@@ -1,43 +1,33 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, session
 import joblib
 import numpy as np
 import math
 app = Flask(__name__)
 index_file = "index.pkl"
 #flask --app fltest run
-
+# https://cloud.google.com/container-registry/docs/pushing-and-pulling
+data = joblib.load(index_file)
 
 
 
 @app.route("/")
 def hello_world():
-    return """
-    <p>Enter Query!</p>
-    <form action="/button" method="post">
-        <br>
-        <input type="text" name="query">
-        <br>
-        <input type="submit" value="SEARCH" id="submit">
-    </form>
-    """
-#     + """
-#     <form action="/button2" method="post">
-#         <br>
-#         <input type="text" name="query">
-#         <br>
-#         <input type="submit" value="SEARCH" id="submit">
-#     </form>
-#     """
-# @app.route("/button2", methods=["POST"])
-# def button2():
-#     return "<p>SUCESS!</p>"
+    return render_template("home.html")
 
 @app.route("/button", methods=["POST"])
 def button():
-    
     query = request.form.get('query').lower()
     
-    data = joblib.load(index_file)
+    return render_template("loading.html" , query = query)
+
+
+@app.route("/results", methods=["GET", "POST"])
+def results():
+    query = request.args.get('query')
+    
+    # query = request.form.get('query').lower()
+    
+    # data = joblib.load(index_file)
     
     X = data["X"]
     feature_names = data["feature_names"]
@@ -71,17 +61,20 @@ def button():
         
             
 
-    rtn = "<p>Input: {}</p><br><br>".format(query)
+    rtn = "<h1>Input: {}</h1><br><br>".format(query)
 
     index_score =  [(i,rankings[i]) for i in range(len(rankings))]
-    index_score.sort(key=lambda x: -x[1])
 
-    for i in range(200):
+    index_score.sort(key=lambda x: -x[1])
+    used = set()
+    for i in range(20):
         docID = index_score[i]
         x = data["data_link"][docID[0]]
         y=data["data_title"][docID[0]]
-        rtn+=("<a href = \"{}\">{}</a><br>".format(x ,y) )
-        rtn += "<p> {} </p>".format( " "+ str(docID[1]))
+        if y not in used:
+            used.add(y)
+        rtn+=(" <a href = \"{}\">{}</a><br>".format(x ,y) )
+        rtn += "<h2> {} </h2>".format( " "+ str(docID[1]))
 
     return rtn
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/loading.css">
+    <title>Loading...</title>
+    <script>
+        setTimeout(function(){
+            var query = "{{ query }}";
+            window.location.href = "{{ url_for('results') }}" + "?query=" + encodeURIComponent(query);
+        }, 1000); // Redirect to results after 1 second
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let loadingText = document.getElementById("loading-text");
+            let dots = ["", ".", "..", "..."];
+            let index = 0;
+
+            setInterval(function() {
+                loadingText.textContent = "Loading results for" + dots[index];
+                index = (index + 1) % dots.length;
+            }, 900); // Change every 900ms
+        });
+    </script>
+</head>
+<body>
+    
+
+    <h1  id="loading-text">Loading results for.</h1>
+    <h1>{{query}}</h1>
+
+</body>
+</html>
