@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, session
 import joblib
 import numpy as np
 import math
+import requests
+from bs4 import BeautifulSoup
 app = Flask(__name__)
 index_file = "index.pkl"
 #flask --app fltest run
@@ -23,6 +25,29 @@ def button():
 
 @app.route("/results", methods=["GET", "POST"])
 def results():
+    def get_Stars(num):
+        num = float(num)
+        if num > .6:
+            return 5
+        if num > .5:
+            return 4
+        if num > .4:
+            return 3
+        else:
+            return 2
+    
+    def get_desc(url):
+        response = requests.get(url)
+        page = response.text
+        soup = BeautifulSoup(page, 'lxml') # or 'html.parser'
+        for paragraph in soup.find_all('p'):
+            para = paragraph.get_text(strip=False)
+            if len(para) > 5:
+                if len(para) < 600:
+                    return para
+                else:
+                    return para[0:600] + "..."
+        return ""
     query = request.args.get('query')
     
     # query = request.form.get('query').lower()
@@ -61,7 +86,18 @@ def results():
         
             
 
-    rtn = "<h1>Input: {}</h1><br><br>".format(query)
+    rtn = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Results</title>
+        <link rel="stylesheet" type="text/css" href="static/results.css">
+    </head>
+         """ + "<h1>Showing Results for: {}</h1><br><br>".format(query) +"""
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id="results">
+    """
 
     index_score =  [(i,rankings[i]) for i in range(len(rankings))]
 
@@ -73,9 +109,22 @@ def results():
         y=data["data_title"][docID[0]]
         if y not in used:
             used.add(y)
-        rtn+=(" <a href = \"{}\">{}</a><br>".format(x ,y) )
-        rtn += "<h2> {} </h2>".format( " "+ str(docID[1]))
-
+            rtn+=""" 
+            <div id="result-card">
+            <h2><a href=\"{}\">{}</a></h2>""".format(x ,y[:-12])
+            
+            num_stars = get_Stars(str(docID[1]))
+            rtn +="<span class=\"fa fa-star checked\"></span>" * num_stars
+            rtn+="<span class=\"fa fa-star \"></span>" * (5-num_stars)
+            rtn+= "  similarity score of:{}".format( " "+ str(round(docID[1],4)))
+            rtn+= """<p class="snippet">{}</p>""".format(get_desc(x))
+            rtn+="""
+                <span class="url"> {} </span>
+            </div> 
+            
+           """.format(x)
+            # rtn += "<h2> {} </h2>".format( " "+ str(docID[1]))
+    rtn += "</div id=\"results\">"
     return rtn
 
 if __name__ == '__main__':

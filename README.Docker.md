@@ -20,3 +20,7 @@ docs for more detail on building and pushing.
 
 ### References
 * [Docker's Python guide](https://docs.docker.com/language/python/)
+<!-- 
+$ docker build -t mantest --platform linux/amd64 .
+$ docker tag mantest gcr.io/even-ruler-453005-u9/mantest
+$ docker push gcr.io/even-ruler-453005-u9/mantest -->
